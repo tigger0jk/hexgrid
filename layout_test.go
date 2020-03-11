@@ -26,7 +26,7 @@ import (
 //                   *         *
 //                    *********
 //
-var defaultLayout = layout{size: point{100, 100}, origin: point{0, 0}, orientation: orientationFlat}
+var defaultLayout = Layout{size: Point{100, 100}, origin: Point{0, 0}, orientation: orientationFlat}
 
 // utility functions
 func round(num float64) int {
@@ -65,12 +65,12 @@ func TestHexToPixel(t *testing.T) {
 func TestPixelToHex(t *testing.T) {
 
 	var testCases = []struct {
-		point    point
+		point    Point
 		expected Hex
 	}{
-		{point{0, 0}, NewHex(0, 0)},
-		{point{150, 87}, NewHex(1, 0)},
-		{point{300, 10}, NewHex(2, -1)},
+		{Point{0, 0}, NewHex(0, 0)},
+		{Point{150, 87}, NewHex(1, 0)},
+		{Point{300, 10}, NewHex(2, -1)},
 	}
 
 	for _, tt := range testCases {

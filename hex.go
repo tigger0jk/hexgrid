@@ -144,7 +144,7 @@ func HexLineDraw(a, b Hex) []Hex {
 
 	N := HexDistance(a, b)
 
-	// Sometimes the hexLerp will output a point that’s on an edge.
+	// Sometimes the hexLerp will output a Point that’s on an edge.
 	// On some systems, the rounding code will push that to one side or the other,
 	// somewhat unpredictably and inconsistently.
 	// To make it always push these points in the same Direction, add an “epsilon” value to a.
