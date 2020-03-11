@@ -107,6 +107,34 @@ func TestHexNeighbor(t *testing.T) {
 	}
 }
 
+// Tests that the offset neighbors of a certain hexagon are properly computed for all Directions
+func TestHexNeighborOffset(t *testing.T) {
+
+	var testCases = []struct {
+		origin    Hex
+		direction Direction
+		distance  int
+		expected  Hex
+	}{
+
+		{NewHex(0, -1), DirectionSE, 1, NewHex(1, -1)},
+		{NewHex(0, -1), DirectionNE, 2, NewHex(2, -3)},
+		{NewHex(0, -1), DirectionN, 3, NewHex(0, -4)},
+		{NewHex(0, -1), DirectionNW, 4, NewHex(-4, -1)},
+		{NewHex(0, -1), DirectionSW, 5, NewHex(-5, 4)},
+		{NewHex(0, -1), DirectionS, 200, NewHex(0, 199)},
+	}
+
+	for _, tt := range testCases {
+
+		actual := HexNeighborOffset(tt.origin, tt.direction, tt.distance)
+
+		if actual != tt.expected {
+			t.Error("Expected:", tt.expected, "got:", actual)
+		}
+	}
+}
+
 // DISTANCE TESTS
 
 //           _ _
