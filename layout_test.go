@@ -41,7 +41,7 @@ func toFixed(num float64, precision int) float64 {
 func TestHexToPixel(t *testing.T) {
 
 	var testCases = []struct {
-		hexA     hex
+		hexA     Hex
 		expected string
 	}{
 		{NewHex(0, 0), "0.0;0.0"},
@@ -66,7 +66,7 @@ func TestPixelToHex(t *testing.T) {
 
 	var testCases = []struct {
 		point    point
-		expected hex
+		expected Hex
 	}{
 		{point{0, 0}, NewHex(0, 0)},
 		{point{150, 87}, NewHex(1, 0)},
