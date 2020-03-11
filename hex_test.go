@@ -117,6 +117,7 @@ func TestHexNeighborOffset(t *testing.T) {
 		expected  Hex
 	}{
 
+		{NewHex(0, -1), DirectionSE, 0, NewHex(0, -1)},
 		{NewHex(0, -1), DirectionSE, 1, NewHex(1, -1)},
 		{NewHex(0, -1), DirectionNE, 2, NewHex(2, -3)},
 		{NewHex(0, -1), DirectionN, 3, NewHex(0, -4)},
