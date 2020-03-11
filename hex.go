@@ -25,6 +25,25 @@ var directions = []Hex{
 	NewHex(0, +1),
 }
 
+func (this Direction) ToString() string {
+	switch this {
+	case DirectionSE:
+		return "SE";
+	case DirectionNE:
+		return "NE";
+	case DirectionN:
+		return "N";
+	case DirectionNW:
+		return "NW";
+	case DirectionSW:
+		return "SW";
+	case DirectionS:
+		return "S";
+	default:
+		panic("Invalid direction")
+	}
+}
+
 // Hex describes a regular hexagon with Cube Coordinates (although the S coordinate is computed on the constructor)
 // It's also easy to reference them as axial (trapezoidal coordinates):
 // - R represents the vertical axis
