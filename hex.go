@@ -47,12 +47,12 @@ var directions = []Hex{
 type Hex struct {
 	Q int // x axis
 	R int // y axis
-	s int // z axis
+	S int // z axis
 }
 
 func NewHex(q, r int) Hex {
 
-	h := Hex{Q: q, R: r, s: -q - r}
+	h := Hex{Q: q, R: r, S: -q - r}
 	return h
 
 }
@@ -121,7 +121,7 @@ func HexScale(a Hex, k int) Hex {
 }
 
 func HexLength(Hex Hex) int {
-	return int((math.Abs(float64(Hex.Q)) + math.Abs(float64(Hex.R)) + math.Abs(float64(Hex.s))) / 2.)
+	return int((math.Abs(float64(Hex.Q)) + math.Abs(float64(Hex.R)) + math.Abs(float64(Hex.S))) / 2.)
 }
 
 func HexDistance(a, b Hex) int {
