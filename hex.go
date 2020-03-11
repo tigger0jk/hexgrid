@@ -156,8 +156,8 @@ func HexNeighbor(h Hex, direction Direction) Hex {
 
 // Returns the neighbor hexagon a certain distance in a certain Direction
 func HexNeighborOffset(h Hex, direction Direction, distance int) Hex {
-	directionOffset := directions[direction]
-	return NewHex(h.Q+directionOffset.Q*distance, h.R+directionOffset.R*distance)
+	directionOffset := HexScale(directions[direction], distance)
+	return NewHex(h.Q+directionOffset.Q, h.R+directionOffset.R)
 }
 
 // Returns the slice of hexagons that exist on a line that goes from hexagon a to hexagon b
