@@ -8,7 +8,7 @@ import (
 type Direction int
 
 const (
-	DirectionSE = iota
+	DirectionSE Direction = iota
 	DirectionNE
 	DirectionN
 	DirectionNW

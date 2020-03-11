@@ -67,6 +67,28 @@ func TestHexScale(t *testing.T) {
 
 }
 
+func TestDirection_ToString(t *testing.T) {
+	var testCases = []struct {
+		direction Direction
+		expected  string
+	}{
+		{DirectionN, "N"},
+		{DirectionNE, "NE"},
+		{DirectionSE, "SE"},
+		{DirectionS, "S"},
+		{DirectionSW, "SW"},
+		{DirectionNW, "NW"},
+	}
+
+	for _, tt := range testCases {
+
+		actual := tt.direction.ToString()
+		if actual != tt.expected {
+			t.Error("Expected:", tt.expected, "got:", actual)
+		}
+	}
+}
+
 //           _ _
 //         /     \
 //    _ _ /(0,-2) \ _ _
