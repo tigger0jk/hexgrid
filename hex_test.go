@@ -80,21 +80,21 @@ func TestHexScale(t *testing.T) {
 //  \ _ _ / (0,0) \ _ _ /
 //        \       /
 //         \ _ _ /
-// Tests that the neighbors of a certain hexagon are properly computed for all directions
+// Tests that the neighbors of a certain hexagon are properly computed for all Directions
 func TestHexNeighbor(t *testing.T) {
 
 	var testCases = []struct {
 		origin    Hex
-		direction direction
+		direction Direction
 		expected  Hex
 	}{
 
-		{NewHex(0, -1), directionSE, NewHex(1, -1)},
-		{NewHex(0, -1), directionNE, NewHex(1, -2)},
-		{NewHex(0, -1), directionN, NewHex(0, -2)},
-		{NewHex(0, -1), directionNW, NewHex(-1, -1)},
-		{NewHex(0, -1), directionSW, NewHex(-1, 0)},
-		{NewHex(0, -1), directionS, NewHex(0, 0)},
+		{NewHex(0, -1), DirectionSE, NewHex(1, -1)},
+		{NewHex(0, -1), DirectionNE, NewHex(1, -2)},
+		{NewHex(0, -1), DirectionN, NewHex(0, -2)},
+		{NewHex(0, -1), DirectionNW, NewHex(-1, -1)},
+		{NewHex(0, -1), DirectionSW, NewHex(-1, 0)},
+		{NewHex(0, -1), DirectionS, NewHex(0, 0)},
 	}
 
 	for _, tt := range testCases {

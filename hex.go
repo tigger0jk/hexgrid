@@ -5,15 +5,15 @@ import (
 	"math"
 )
 
-type direction int
+type Direction int
 
 const (
-	directionSE = iota
-	directionNE
-	directionN
-	directionNW
-	directionSW
-	directionS
+	DirectionSE = iota
+	DirectionNE
+	DirectionN
+	DirectionNW
+	DirectionSW
+	DirectionS
 )
 
 var directions = []Hex{
@@ -129,8 +129,8 @@ func HexDistance(a, b Hex) int {
 	return HexLength(sub)
 }
 
-// Returns the neighbor hexagon at a certain direction
-func HexNeighbor(h Hex, direction direction) Hex {
+// Returns the neighbor hexagon at a certain Direction
+func HexNeighbor(h Hex, direction Direction) Hex {
 	directionOffset := directions[direction]
 	return NewHex(h.q+directionOffset.q, h.r+directionOffset.r)
 }
@@ -147,8 +147,8 @@ func HexLineDraw(a, b Hex) []Hex {
 	// Sometimes the hexLerp will output a point that’s on an edge.
 	// On some systems, the rounding code will push that to one side or the other,
 	// somewhat unpredictably and inconsistently.
-	// To make it always push these points in the same direction, add an “epsilon” value to a.
-	// This will “nudge” things in the same direction when it’s on an edge, and leave other points unaffected.
+	// To make it always push these points in the same Direction, add an “epsilon” value to a.
+	// This will “nudge” things in the same Direction when it’s on an edge, and leave other points unaffected.
 
 	a_nudge := NewFractionalHex(float64(a.q)+0.000001, float64(a.r)+0.000001)
 	b_nudge := NewFractionalHex(float64(b.q)+0.000001, float64(b.r)+0.000001)
