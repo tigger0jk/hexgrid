@@ -27,8 +27,8 @@ func HexToPixel(l layout, h Hex) point {
 	M := l.orientation
 	size := l.size
 	origin := l.origin
-	x := (M.f0*float64(h.q) + M.f1*float64(h.r)) * size.x
-	y := (M.f2*float64(h.q) + M.f3*float64(h.r)) * size.y
+	x := (M.f0*float64(h.Q) + M.f1*float64(h.R)) * size.x
+	y := (M.f2*float64(h.Q) + M.f3*float64(h.R)) * size.y
 	return point{x + origin.x, y + origin.y}
 }
 

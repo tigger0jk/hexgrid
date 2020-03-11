@@ -45,20 +45,20 @@ var directions = []Hex{
 //        \  +R   /
 //         \ _ _ /
 type Hex struct {
-	q int // x axis
-	r int // y axis
+	Q int // x axis
+	R int // y axis
 	s int // z axis
 }
 
 func NewHex(q, r int) Hex {
 
-	h := Hex{q: q, r: r, s: -q - r}
+	h := Hex{Q: q, R: r, s: -q - r}
 	return h
 
 }
 
 func (h Hex) String() string {
-	return fmt.Sprintf("(%d,%d)", h.q, h.r)
+	return fmt.Sprintf("(%d,%d)", h.Q, h.R)
 }
 
 // fractionHex provides a more precise representation for hexagons when precision is required.
@@ -107,21 +107,21 @@ func (h fractionalHex) Round() Hex {
 
 // Adds two hexagons
 func HexAdd(a, b Hex) Hex {
-	return NewHex(a.q+b.q, a.r+b.r)
+	return NewHex(a.Q+b.Q, a.R+b.R)
 }
 
 // Subtracts two hexagons
 func HexSubtract(a, b Hex) Hex {
-	return NewHex(a.q-b.q, a.r-b.r)
+	return NewHex(a.Q-b.Q, a.R-b.R)
 }
 
 // Scales an hexagon by a k factor. If factor k is 1 there's no change
 func HexScale(a Hex, k int) Hex {
-	return NewHex(a.q*k, a.r*k)
+	return NewHex(a.Q*k, a.R*k)
 }
 
 func HexLength(Hex Hex) int {
-	return int((math.Abs(float64(Hex.q)) + math.Abs(float64(Hex.r)) + math.Abs(float64(Hex.s))) / 2.)
+	return int((math.Abs(float64(Hex.Q)) + math.Abs(float64(Hex.R)) + math.Abs(float64(Hex.s))) / 2.)
 }
 
 func HexDistance(a, b Hex) int {
@@ -132,7 +132,7 @@ func HexDistance(a, b Hex) int {
 // Returns the neighbor hexagon at a certain Direction
 func HexNeighbor(h Hex, direction Direction) Hex {
 	directionOffset := directions[direction]
-	return NewHex(h.q+directionOffset.q, h.r+directionOffset.r)
+	return NewHex(h.Q+directionOffset.Q, h.R+directionOffset.R)
 }
 
 // Returns the slice of hexagons that exist on a line that goes from hexagon a to hexagon b
@@ -150,8 +150,8 @@ func HexLineDraw(a, b Hex) []Hex {
 	// To make it always push these points in the same Direction, add an “epsilon” value to a.
 	// This will “nudge” things in the same Direction when it’s on an edge, and leave other points unaffected.
 
-	a_nudge := NewFractionalHex(float64(a.q)+0.000001, float64(a.r)+0.000001)
-	b_nudge := NewFractionalHex(float64(b.q)+0.000001, float64(b.r)+0.000001)
+	a_nudge := NewFractionalHex(float64(a.Q)+0.000001, float64(a.R)+0.000001)
+	b_nudge := NewFractionalHex(float64(b.Q)+0.000001, float64(b.R)+0.000001)
 
 	results := make([]Hex, 0)
 	step := 1. / math.Max(float64(N), 1)
