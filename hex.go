@@ -149,39 +149,42 @@ func HexDistance(a, b Hex) int {
 }
 
 // Pass 0 for qOffset if you want the actual axis, or any other number to get the distance to that Q value
-func GetDistanceToQAxis(h Hex, direction Direction, qOffset int) int {
+// Returns the distance and a bool for whether it ever hits it, if it doesn't will return 0 for distance
+func GetDistanceToQAxis(h Hex, direction Direction, qOffset int) (int, bool) {
 	hexDir := directions[direction]
 	if h.Q == qOffset {
-		return 0
+		return 0, true
 	}
 	if hexDir.Q == 0 {
-		panic("This direction is along the Q axis already, it will never intersect it")
+		return 0, false
 	}
-	return (qOffset - h.Q) / hexDir.Q
+	return (qOffset - h.Q) / hexDir.Q, true
 }
 
 // Pass 0 for rOffset if you want the actual axis, or any other number to get the distance to that Q value
-func GetDistanceToRAxis(h Hex, direction Direction, rOffset int) int {
+// Returns the distance and a bool for whether it ever hits it, if it doesn't will return 0 for distance
+func GetDistanceToRAxis(h Hex, direction Direction, rOffset int) (int, bool) {
 	hexDir := directions[direction]
 	if h.R == rOffset {
-		return 0
+		return 0, true
 	}
 	if hexDir.R == 0 {
-		panic("This direction is along the Q axis already, it will never intersect it")
+		return 0, false
 	}
-	return (rOffset - h.R) / hexDir.R
+	return (rOffset - h.R) / hexDir.R, true
 }
 
 // Pass 0 for rOffset if you want the actual axis, or any other number to get the distance to that Q value
-func GetDistanceToSAxis(h Hex, direction Direction, sOffset int) int {
+// Returns the distance and a bool for whether it ever hits it, if it doesn't will return 0 for distance
+func GetDistanceToSAxis(h Hex, direction Direction, sOffset int) (int, bool) {
 	hexDir := directions[direction]
 	if h.S == sOffset {
-		return 0
+		return 0, true
 	}
 	if hexDir.S == 0 {
-		panic("This direction is along the Q axis already, it will never intersect it")
+		return 0, false
 	}
-	return (sOffset - h.S) / hexDir.S
+	return (sOffset - h.S) / hexDir.S, true
 }
 
 // Returns the neighbor hexagon at a certain Direction
