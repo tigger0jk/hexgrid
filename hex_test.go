@@ -202,6 +202,144 @@ func TestHexDistance(t *testing.T) {
 	}
 }
 
+func TestGetDistanceToQAxis(t *testing.T) {
+
+	var testCases = []struct {
+		origin      Hex
+		direction	Direction
+		qOffset		int
+		expected    int
+	}{
+		//{NewHex(-3, +1), DirectionN, 0, 0}, // EXCEPTION
+		{NewHex(-3, +1), DirectionNE, 0, 3},
+		{NewHex(-3, +1), DirectionSE, 0, 3},
+		//{NewHex(-3, +1), DirectionS, 0, 0}, // EXCEPTION
+		{NewHex(-3, +1), DirectionSW, 0, -3},
+		{NewHex(-3, +1), DirectionNW, 0, -3},
+		// would be exception but it's already on the axis
+		{NewHex(0, +1), DirectionS, 0, 0},
+	}
+
+	for _, tt := range testCases {
+
+		actual := GetDistanceToQAxis(tt.origin, tt.direction, tt.qOffset)
+
+		if actual != tt.expected {
+			t.Error("Expected:", tt.expected, "got:", actual)
+		}
+	}
+}
+
+func TestGetDistanceToQAxisPanic1(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToQAxis(NewHex(-3, +1), DirectionS, 0)
+}
+
+func TestGetDistanceToQAxisPanic2(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToQAxis(NewHex(-3, +1), DirectionS, 0)
+}
+
+func TestGetDistanceToRAxis(t *testing.T) {
+
+	var testCases = []struct {
+		origin      Hex
+		direction	Direction
+		rOffset		int
+		expected    int
+	}{
+		{NewHex(-2, -1), DirectionN, 3, -4},
+		{NewHex(-2, -1), DirectionNE, 3, -4},
+		//{NewHex(-2, -1), DirectionSE, 3, 0}, // EXCEPTION
+		{NewHex(-2, -1), DirectionS, 3, 4},
+		{NewHex(-2, -1), DirectionSW, 3, 4},
+		//{NewHex(-2, -1), DirectionNW, 3, 0}, // EXCEPTION
+		// would be exception but it's already on the axis
+		{NewHex(-2, 3), DirectionNW, 3, 0},
+	}
+
+	for _, tt := range testCases {
+
+		actual := GetDistanceToRAxis(tt.origin, tt.direction, tt.rOffset)
+
+		if actual != tt.expected {
+			t.Error("Expected:", tt.expected, "got:", actual)
+		}
+	}
+}
+
+func TestGetDistanceToRAxisPanic1(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToRAxis(NewHex(-2, -1), DirectionSE, 3)
+}
+
+func TestGetDistanceToRAxisPanic2(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToRAxis(NewHex(-2, -1), DirectionNW, 3)
+}
+
+func TestGetDistanceToSAxis(t *testing.T) {
+
+	var testCases = []struct {
+		origin      Hex
+		direction	Direction
+		sOffset		int
+		expected    int
+	}{
+		{NewHex(1, -1), DirectionN, -2, -2},
+		//{NewHex(1, -1), DirectionNE, -2, 0}, // EXCEPTION
+		{NewHex(1, -1), DirectionSE, -2, 2},
+		{NewHex(1, -1), DirectionS, -2, 2},
+		//{NewHex(1, -1), DirectionSW, -2, 0}, // EXCEPTION
+		{NewHex(1, -1), DirectionNW, -2, -2},
+		// would be exception but it's already on the axis
+		{NewHex(3, -1), DirectionSW, -2, 0},
+	}
+
+	for _, tt := range testCases {
+
+		actual := GetDistanceToSAxis(tt.origin, tt.direction, tt.sOffset)
+
+		if actual != tt.expected {
+			t.Error("Expected:", tt.expected, "got:", actual)
+		}
+	}
+}
+
+func TestGetDistanceToSAxisPanic1(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToSAxis(NewHex(1, -1), DirectionNE, -2)
+}
+
+func TestGetDistanceToSAxisPanic2(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("The code did not panic")
+		}
+	}()
+	GetDistanceToSAxis(NewHex(1, -1), DirectionSW, -2)
+}
+
 //          _____         _____         _____
 //         /     \       /     \       /     \
 //   _____/ -2,-2 \_____/  0,-3 \_____/  2,-4 \_____

@@ -148,6 +148,42 @@ func HexDistance(a, b Hex) int {
 	return HexLength(sub)
 }
 
+// Pass 0 for qOffset if you want the actual axis, or any other number to get the distance to that Q value
+func GetDistanceToQAxis(h Hex, direction Direction, qOffset int) int {
+	hexDir := directions[direction]
+	if h.Q == qOffset {
+		return 0
+	}
+	if hexDir.Q == 0 {
+		panic("This direction is along the Q axis already, it will never intersect it")
+	}
+	return (qOffset - h.Q) / hexDir.Q
+}
+
+// Pass 0 for rOffset if you want the actual axis, or any other number to get the distance to that Q value
+func GetDistanceToRAxis(h Hex, direction Direction, rOffset int) int {
+	hexDir := directions[direction]
+	if h.R == rOffset {
+		return 0
+	}
+	if hexDir.R == 0 {
+		panic("This direction is along the Q axis already, it will never intersect it")
+	}
+	return (rOffset - h.R) / hexDir.R
+}
+
+// Pass 0 for rOffset if you want the actual axis, or any other number to get the distance to that Q value
+func GetDistanceToSAxis(h Hex, direction Direction, sOffset int) int {
+	hexDir := directions[direction]
+	if h.S == sOffset {
+		return 0
+	}
+	if hexDir.S == 0 {
+		panic("This direction is along the Q axis already, it will never intersect it")
+	}
+	return (sOffset - h.S) / hexDir.S
+}
+
 // Returns the neighbor hexagon at a certain Direction
 func HexNeighbor(h Hex, direction Direction) Hex {
 	directionOffset := directions[direction]
